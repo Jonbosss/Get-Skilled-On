@@ -34,7 +34,7 @@ A Python/Django application designed to gamify personal growth. Track real-life 
    ```bash
     python manage.py runserver
 
-Access the app at TBD
+Access the app at http://127.0.0.1:8000/
 
 📅 Roadmap
 [x] Initial Django Setup
