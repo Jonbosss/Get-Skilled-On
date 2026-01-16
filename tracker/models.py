@@ -1,3 +1,4 @@
+import math
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.db import models
@@ -40,16 +41,21 @@ class Activity(models.Model):
 @receiver(post_save, sender=Activity)
 def update_user_stats(sender, instance, created, **kwargs):
     if created:
-        # 1. Find the user's profile
         profile = Profile.objects.get(user=instance.user)
 
-        # 2. Add XP based on the category
+        # 1. Add the XP
         if instance.category == 'STR':
             profile.str_xp += instance.xp_amount
+            # 2. Calculate New Level: Level = Square root of (XP / 100) + 1
+            profile.strength = math.floor(math.sqrt(profile.str_xp / 100)) + 1
+
         elif instance.category == 'INT':
             profile.int_xp += instance.xp_amount
+            profile.intelligence = math.floor(
+                math.sqrt(profile.int_xp / 100)) + 1
+
         elif instance.category == 'CHA':
             profile.cha_xp += instance.xp_amount
+            profile.charisma = math.floor(math.sqrt(profile.cha_xp / 100)) + 1
 
-        # 3. Save the updated profile
         profile.save()
