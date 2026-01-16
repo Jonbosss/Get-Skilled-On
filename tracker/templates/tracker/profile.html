@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Get Skilled On - Profile</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+        }
+
+        .card {
+            background: #333;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #4caf50;
+            width: 300px;
+            text-align: center;
+        }
+
+        .stat {
+            margin: 20px 0;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+
+        .level {
+            font-size: 2em;
+            color: #4caf50;
+            margin: 0;
+        }
+
+        .xp {
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>{{ profile.user.username }}</h1>
+        <hr>
+
+        <div class="stat">
+            <p>STRENGTH</p>
+            <p class="level">Lvl {{ profile.strength }}</p>
+            <p class="xp">{{ profile.str_xp }} XP</p>
+        </div>
+
+        <div class="stat">
+            <p>INTELLIGENCE</p>
+            <p class="level">Lvl {{ profile.intelligence }}</p>
+            <p class="xp">{{ profile.int_xp }} XP</p>
+        </div>
+
+        <div class="stat">
+            <p>CHARISMA</p>
+            <p class="level">Lvl {{ profile.charisma }}</p>
+            <p class="xp">{{ profile.cha_xp }} XP</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
