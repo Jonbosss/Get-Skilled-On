@@ -38,6 +38,53 @@
             color: #888;
             font-size: 0.9em;
         }
+
+        .progress-bg {
+            background: #444;
+            border-radius: 10px;
+            height: 10px;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .progress-fill {
+            background: #4caf50;
+            height: 10px;
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+
+        .log-box {
+            margin-top: 30px;
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed #4caf50;
+        }
+
+        .log-box input,
+        .log-box select {
+            width: 90%;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
     </style>
 </head>
 
@@ -51,19 +98,38 @@
             <p>STRENGTH</p>
             <p class="level">Lvl {{ profile.strength }}</p>
             <p class="xp">{{ profile.str_xp }} XP</p>
+            <div class="progress-bg">
+                <div class="progress-fill" style="width: {{ str_prog }}%;"></div>
+            </div>
         </div>
 
         <div class="stat">
             <p>INTELLIGENCE</p>
             <p class="level">Lvl {{ profile.intelligence }}</p>
             <p class="xp">{{ profile.int_xp }} XP</p>
+            <div class="progress-bg">
+                <div class="progress-fill" style="width: {{ int_prog }}%;"></div>
+            </div>
         </div>
 
         <div class="stat">
             <p>CHARISMA</p>
             <p class="level">Lvl {{ profile.charisma }}</p>
             <p class="xp">{{ profile.cha_xp }} XP</p>
+            <div class="progress-bg">
+                <div class="progress-fill" style="width: {{ cha_prog }}%;"></div>
+            </div>
         </div>
+
+        <div class="log-box">
+            <h3>Log Activity</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn">Add Quest XP</button>
+            </form>
+        </div>
+    </div>
     </div>
 
 </body>
